@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Pebble HelloWorld</string>
+    <string name="send_it">Sent it!</string>
+    <string name="check_connection">Check connection!</string>
+    <string name="is_connected">Connected!!!</string>
+    <string name="is_disconnected">Not connected!</string>
+</resources>
