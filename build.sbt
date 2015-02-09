@@ -19,6 +19,13 @@ resolvers ++= Seq(
   Resolver.jcenterRepo
 )
 
+javacOptions in (Compile, compile) ++= Seq(
+  "-source", "1.7",
+  "-target", "1.7",
+  "-Xlint:unchecked",
+  "-Xlint:deprecation"
+)
+
 scalacOptions in (Compile, compile) ++=
   (dependencyClasspath in Compile).value.files.map("-P:wartremover:cp:" + _.toURI.toURL)
 
