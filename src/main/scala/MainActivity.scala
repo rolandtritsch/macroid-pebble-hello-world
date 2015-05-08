@@ -21,7 +21,8 @@ object MyTweaks {
 }
 
 object MainActivity {
-  val appUuid = UUID.fromString("130b48f3-f990-4458-acc4-8c3887856651")
+  val KEY_HELLOTEXT = 0
+  val APP_UUID = UUID.fromString("130b48f3-f990-4458-acc4-8c3887856651")
 }
 
 class MainActivity extends Activity with Contexts[Activity] {
@@ -48,8 +49,8 @@ class MainActivity extends Activity with Contexts[Activity] {
         text(getString(R.string.send_it)) <~ large <~
         On.click {
           val data = new PebbleDictionary
-          data.addString(0, helloText.get.getText.toString)
-          PebbleKit.sendDataToPebble(activityAppContext.get, MainActivity.appUuid, data)
+          data.addString(MainActivity.KEY_HELLOTEXT, helloText.get.getText.toString)
+          PebbleKit.sendDataToPebble(activityAppContext.get, MainActivity.APP_UUID, data)
           toast("Send it...") <~ fry
         }
     ) <~ vertical <~ gravity(Gravity.CENTER)
