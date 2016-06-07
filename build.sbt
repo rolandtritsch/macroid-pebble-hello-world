@@ -4,11 +4,11 @@ import android.Dependencies.{LibraryDependency, aar}
 
 android.Plugin.androidBuild
 
-platformTarget in Android := "android-19"
+platformTarget in Android := "android-23"
 
 name := "PebbleHelloWorldApp"
 
-scalaVersion := "2.11.4"
+scalaVersion := "2.11.8"
 
 run <<= run in Android
 
@@ -26,8 +26,9 @@ javacOptions in (Compile, compile) ++= Seq(
   "-Xlint:deprecation"
 )
 
-scalacOptions in (Compile, compile) ++=
-  (dependencyClasspath in Compile).value.files.map("-P:wartremover:cp:" + _.toURI.toURL)
+scalacOptions in (Compile, compile) ++= (
+  dependencyClasspath in Compile).value.files.map("-P:wartremover:cp:" + _.toURI.toURL
+)
 
 scalacOptions in (Compile, compile) ++= Seq(
   "-P:wartremover:traverser:macroid.warts.CheckUi"
@@ -35,9 +36,9 @@ scalacOptions in (Compile, compile) ++= Seq(
 
 libraryDependencies ++= Seq(
   aar("org.macroid" %% "macroid" % "2.0.0-M3"),
-  aar("com.android.support" % "support-v4" % "20.0.0"),
-  "com.getpebble" % "pebblekit" % "2.6.0",
-  compilerPlugin("org.brianmckenna" %% "wartremover" % "0.10")
+  "com.android.support" % "support-v4" % "20.0.0",
+  "com.getpebble" % "pebblekit" % "3.0.0",
+  compilerPlugin("org.brianmckenna" %% "wartremover" % "0.11")
 )
 
 proguardScala in Android := true
